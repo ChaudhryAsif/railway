@@ -1,12 +1,21 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello from Railway - Pipeline Verified!');
+  // 1. Health Check Route (Standard Practice)
+  if (req.url === '/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok', uptime: process.uptime() }));
+    return;
+  }
+
+  // 2. Main Landing Page
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('CI/CD Pipeline is LIVE! Verified by Asif.');
 });
 
-const port = process.env.PORT || 3000;
+// Railway provides the PORT, we default to 8080 to match your previous logs
+const port = process.env.PORT || 8080;
+
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
