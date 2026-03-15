@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
 });
 
 // Use Railway's port, fallback to 8080
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 // Explicitly bind to 0.0.0.0
 server.listen(port, '0.0.0.0', () => {
