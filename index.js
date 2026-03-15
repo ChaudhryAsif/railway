@@ -1,21 +1,15 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-  // 1. Health Check Route (Standard Practice)
-  if (req.url === '/health') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', uptime: process.uptime() }));
-    return;
-  }
-
-  // 2. Main Landing Page
+  // Return a 200 OK for any request (Required for Railway's Health Check)
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('CI/CD Pipeline is LIVE! Verified by Asif.');
 });
 
-// Railway provides the PORT, we default to 8080 to match your previous logs
+// Use Railway's port, fallback to 8080
 const port = process.env.PORT || 8080;
 
-server.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+// Explicitly bind to 0.0.0.0
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Server is officially listening on port ${port}`);
 });
