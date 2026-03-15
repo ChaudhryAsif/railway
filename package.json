@@ -1,12 +1,12 @@
 {
-  "name": "railway",
+  "name": "frendlia-core",
   "version": "1.0.0",
+  "description": "Frendlia Core Server",
   "main": "index.js",
   "scripts": {
-  "start": "node index.js"
-},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
